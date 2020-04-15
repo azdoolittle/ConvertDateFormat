@@ -14,7 +14,6 @@ concat values
 print
  */
 
-
 import java.util.Scanner;
 
 public class ConvertDateFormat {
@@ -31,11 +30,14 @@ public class ConvertDateFormat {
         input = new Scanner(System.in);
         dateStr = input.next().split("/");
         monthInt = Integer.parseInt(dateStr[0]);
+        dayInt = Integer.parseInt(dateStr[1]);
+        yearInt = Integer.parseInt(dateStr[2]);
 
         if (monthInt < 1 || monthInt > 12 ) {
             System.out.println("A valid month (mm) is between 1 and 12.");
             System.out.println("Example date format (mm/dd/yyyy): 02/28/2020 for February 28, 2020.");
-            System.exit(1);
+            main(new String[] {});
+            return;
         }
 
         switch (monthInt) {
@@ -88,19 +90,21 @@ public class ConvertDateFormat {
                 daysInMonth = 31;
                 break;
         }
-        dayInt = Integer.parseInt(dateStr[1]);
+
         if (dayInt < 1 || dayInt > daysInMonth ) {
             System.out.println("A valid day (dd) for " + monthStr + " is between 1 and " + daysInMonth + ".");
             System.out.println("Example date format (mm/dd/yyyy): 02/28/2020 for February 28, 2020.");
-            System.exit(1);
+            main(new String[] {});
+            return;
         }
-        yearInt = Integer.parseInt(dateStr[2]);
+
         if (yearInt < 0 || yearInt > 9999) {
             System.out.println("A valid year (yyyy) is between 0 and 9999.");
             System.out.println("Example date format (mm/dd/yyyy): 02/28/2020 for February 28, 2020.");
-            System.exit(1);
+            main(new String[] {});
+            return;
         }
-        System.out.printf("It is %s %d, %d", monthStr, dayInt, yearInt);
 
+        System.out.printf("It is %s %d, %d", monthStr, dayInt, yearInt);
     }
 }
